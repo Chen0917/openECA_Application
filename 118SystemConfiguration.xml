@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StudyCase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" BaseMVA="100" BaseKV="345">
+  <Branches>
+    <Branch LineNumber="1" FromBusNumber="8" ToBusNumber="9" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="2" FromBusNumber="8" ToBusNumber="30" Resistance="0.00431" Reactance="0.050399998" Susceptance="0.256999996" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="3" FromBusNumber="9" ToBusNumber="10" Resistance="0.00258" Reactance="0.032200001" Susceptance="0.615000005" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="4" FromBusNumber="26" ToBusNumber="30" Resistance="0.00799" Reactance="0.086000005" Susceptance="0.454000003" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="5" FromBusNumber="30" ToBusNumber="38" Resistance="0.00464" Reactance="0.054" Susceptance="0.210999996" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="6" FromBusNumber="38" ToBusNumber="65" Resistance="0.00901" Reactance="0.098600002" Susceptance="0.522999992" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="7" FromBusNumber="63" ToBusNumber="64" Resistance="0.00172" Reactance="0.02" Susceptance="0.108000002" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="8" FromBusNumber="64" ToBusNumber="65" Resistance="0.00269" Reactance="0.0302" Susceptance="0.189999998" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="9" FromBusNumber="65" ToBusNumber="68" Resistance="0.00138" Reactance="0.015999995" Susceptance="0.319000001" HighVoltageLineFlag="true" ReferenceFlag="false" />
+    <Branch LineNumber="10" FromBusNumber="68" ToBusNumber="81" Resistance="0.00175" Reactance="0.020200001" Susceptance="0.404000015" HighVoltageLineFlag="true" ReferenceFlag="true" />
+    <Branch LineNumber="11" FromBusNumber="68" ToBusNumber="116" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="12" FromBusNumber="5" ToBusNumber="8" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="13" FromBusNumber="17" ToBusNumber="30" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="14" FromBusNumber="25" ToBusNumber="26" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="15" FromBusNumber="37" ToBusNumber="38" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="16" FromBusNumber="59" ToBusNumber="63" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="17" FromBusNumber="61" ToBusNumber="64" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="18" FromBusNumber="65" ToBusNumber="66" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="19" FromBusNumber="68" ToBusNumber="69" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="20" FromBusNumber="80" ToBusNumber="81" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="21" FromBusNumber="8" ToBusNumber="-1" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="22" FromBusNumber="10" ToBusNumber="-1" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="23" FromBusNumber="26" ToBusNumber="-1" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+    <Branch LineNumber="24" FromBusNumber="65" ToBusNumber="-1" Resistance="0.00244" Reactance="0.030499999" Susceptance="0.580999961" HighVoltageLineFlag="false" ReferenceFlag="false" />
+  </Branches>
+  <Buses>
+    <Bus BusNumber="8" BusName="Olive" ReferenceFlag="false" />
+    <Bus BusNumber="9" BusName="Bequine" ReferenceFlag="false" />
+    <Bus BusNumber="10" BusName="Breed" ReferenceFlag="false" />
+    <Bus BusNumber="26" BusName="TannrsCk" ReferenceFlag="false" />
+    <Bus BusNumber="30" BusName="Sorenson" ReferenceFlag="false" />
+    <Bus BusNumber="38" BusName="EastLima" ReferenceFlag="false" />
+    <Bus BusNumber="63" BusName="Tidd" ReferenceFlag="false" />
+    <Bus BusNumber="64" BusName="Kammer" ReferenceFlag="false" />
+    <Bus BusNumber="65" BusName="Muskngum" ReferenceFlag="false" />
+    <Bus BusNumber="68" BusName="Sporn" ReferenceFlag="false" />
+    <Bus BusNumber="81" BusName="Kanawha" ReferenceFlag="true" />
+  </Buses>
+</StudyCase>
