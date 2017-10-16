@@ -1,0 +1,879 @@
+﻿GPA Measurement_set Measurement_dataset {
+    Measurements: { Line_1_Line_measurements;Line_2_Line_measurements;Line_3_Line_measurements;Line_4_Line_measurements;Line_5_Line_measurements;Line_6_Line_measurements;Line_7_Line_measurements;Line_8_Line_measurements;Line_9_Line_measurements;Line_10_Line_measurements;Line_11_Line_measurements;Line_12_Line_measurements;Line_13_Line_measurements;Line_14_Line_measurements;Line_15_Line_measurements;Line_16_Line_measurements;Line_17_Line_measurements;Line_18_Line_measurements;Line_19_Line_measurements;Line_20_Line_measurements;Line_21_Line_measurements;Line_22_Line_measurements;Line_23_Line_measurements;Line_24_Line_measurements;; } 
+}
+
+GPA Line_data Line_1_Line_measurements {
+    From_bus: Line_1_From_bus_VI 
+    To_bus: Line_1_To_bus_VI 
+}
+
+GPA VI_data Line_1_From_bus_VI {
+    Voltage: Line_1_From_bus_Voltage 
+    Current: Line_1_From_bus_Current 
+}
+
+GPA Phasor Line_1_From_bus_Voltage {
+    Magnitude: PPA:1 
+    Angle: PPA:2 
+}
+
+GPA Phasor Line_1_From_bus_Current {
+    Magnitude: PPA:3 
+    Angle: PPA:4 
+}
+
+GPA VI_data Line_1_To_bus_VI {
+    Voltage: Line_1_To_bus_Voltage 
+    Current: Line_1_To_bus_Current 
+}
+
+GPA Phasor Line_1_To_bus_Voltage {
+    Magnitude: PPA:5 
+    Angle: PPA:6 
+}
+
+GPA Phasor Line_1_To_bus_Current {
+    Magnitude: PPA:7 
+    Angle: PPA:8 
+}
+
+GPA Line_data Line_2_Line_measurements {
+    From_bus: Line_2_From_bus_VI 
+    To_bus: Line_2_To_bus_VI 
+}
+
+GPA VI_data Line_2_From_bus_VI {
+    Voltage: Line_2_From_bus_Voltage 
+    Current: Line_2_From_bus_Current 
+}
+
+GPA Phasor Line_2_From_bus_Voltage {
+    Magnitude: PPA:9 
+    Angle: PPA:10 
+}
+
+GPA Phasor Line_2_From_bus_Current {
+    Magnitude: PPA:11 
+    Angle: PPA:12 
+}
+
+GPA VI_data Line_2_To_bus_VI {
+    Voltage: Line_2_To_bus_Voltage 
+    Current: Line_2_To_bus_Current 
+}
+
+GPA Phasor Line_2_To_bus_Voltage {
+    Magnitude: PPA:13 
+    Angle: PPA:14 
+}
+
+GPA Phasor Line_2_To_bus_Current {
+    Magnitude: PPA:15 
+    Angle: PPA:16 
+}
+
+GPA Line_data Line_3_Line_measurements {
+    From_bus: Line_3_From_bus_VI 
+    To_bus: Line_3_To_bus_VI 
+}
+
+GPA VI_data Line_3_From_bus_VI {
+    Voltage: Line_3_From_bus_Voltage 
+    Current: Line_3_From_bus_Current 
+}
+
+GPA Phasor Line_3_From_bus_Voltage {
+    Magnitude: PPA:17 
+    Angle: PPA:18 
+}
+
+GPA Phasor Line_3_From_bus_Current {
+    Magnitude: PPA:19 
+    Angle: PPA:20 
+}
+
+GPA VI_data Line_3_To_bus_VI {
+    Voltage: Line_3_To_bus_Voltage 
+    Current: Line_3_To_bus_Current 
+}
+
+GPA Phasor Line_3_To_bus_Voltage {
+    Magnitude: PPA:21 
+    Angle: PPA:22 
+}
+
+GPA Phasor Line_3_To_bus_Current {
+    Magnitude: PPA:23 
+    Angle: PPA:24 
+}
+
+GPA Line_data Line_4_Line_measurements {
+    From_bus: Line_4_From_bus_VI 
+    To_bus: Line_4_To_bus_VI 
+}
+
+GPA VI_data Line_4_From_bus_VI {
+    Voltage: Line_4_From_bus_Voltage 
+    Current: Line_4_From_bus_Current 
+}
+
+GPA Phasor Line_4_From_bus_Voltage {
+    Magnitude: PPA:25 
+    Angle: PPA:26 
+}
+
+GPA Phasor Line_4_From_bus_Current {
+    Magnitude: PPA:27 
+    Angle: PPA:28 
+}
+
+GPA VI_data Line_4_To_bus_VI {
+    Voltage: Line_4_To_bus_Voltage 
+    Current: Line_4_To_bus_Current 
+}
+
+GPA Phasor Line_4_To_bus_Voltage {
+    Magnitude: PPA:29 
+    Angle: PPA:30 
+}
+
+GPA Phasor Line_4_To_bus_Current {
+    Magnitude: PPA:31 
+    Angle: PPA:32 
+}
+
+GPA Line_data Line_5_Line_measurements {
+    From_bus: Line_5_From_bus_VI 
+    To_bus: Line_5_To_bus_VI 
+}
+
+GPA VI_data Line_5_From_bus_VI {
+    Voltage: Line_5_From_bus_Voltage 
+    Current: Line_5_From_bus_Current 
+}
+
+GPA Phasor Line_5_From_bus_Voltage {
+    Magnitude: PPA:33 
+    Angle: PPA:34 
+}
+
+GPA Phasor Line_5_From_bus_Current {
+    Magnitude: PPA:35 
+    Angle: PPA:36 
+}
+
+GPA VI_data Line_5_To_bus_VI {
+    Voltage: Line_5_To_bus_Voltage 
+    Current: Line_5_To_bus_Current 
+}
+
+GPA Phasor Line_5_To_bus_Voltage {
+    Magnitude: PPA:37 
+    Angle: PPA:38 
+}
+
+GPA Phasor Line_5_To_bus_Current {
+    Magnitude: PPA:39 
+    Angle: PPA:40 
+}
+
+GPA Line_data Line_6_Line_measurements {
+    From_bus: Line_6_From_bus_VI 
+    To_bus: Line_6_To_bus_VI 
+}
+
+GPA VI_data Line_6_From_bus_VI {
+    Voltage: Line_6_From_bus_Voltage 
+    Current: Line_6_From_bus_Current 
+}
+
+GPA Phasor Line_6_From_bus_Voltage {
+    Magnitude: PPA:41 
+    Angle: PPA:42 
+}
+
+GPA Phasor Line_6_From_bus_Current {
+    Magnitude: PPA:43 
+    Angle: PPA:44 
+}
+
+GPA VI_data Line_6_To_bus_VI {
+    Voltage: Line_6_To_bus_Voltage 
+    Current: Line_6_To_bus_Current 
+}
+
+GPA Phasor Line_6_To_bus_Voltage {
+    Magnitude: PPA:45 
+    Angle: PPA:46 
+}
+
+GPA Phasor Line_6_To_bus_Current {
+    Magnitude: PPA:47 
+    Angle: PPA:48 
+}
+
+GPA Line_data Line_7_Line_measurements {
+    From_bus: Line_7_From_bus_VI 
+    To_bus: Line_7_To_bus_VI 
+}
+
+GPA VI_data Line_7_From_bus_VI {
+    Voltage: Line_7_From_bus_Voltage 
+    Current: Line_7_From_bus_Current 
+}
+
+GPA Phasor Line_7_From_bus_Voltage {
+    Magnitude: PPA:49 
+    Angle: PPA:50 
+}
+
+GPA Phasor Line_7_From_bus_Current {
+    Magnitude: PPA:51 
+    Angle: PPA:52 
+}
+
+GPA VI_data Line_7_To_bus_VI {
+    Voltage: Line_7_To_bus_Voltage 
+    Current: Line_7_To_bus_Current 
+}
+
+GPA Phasor Line_7_To_bus_Voltage {
+    Magnitude: PPA:53 
+    Angle: PPA:54 
+}
+
+GPA Phasor Line_7_To_bus_Current {
+    Magnitude: PPA:55 
+    Angle: PPA:56 
+}
+
+GPA Line_data Line_8_Line_measurements {
+    From_bus: Line_8_From_bus_VI 
+    To_bus: Line_8_To_bus_VI 
+}
+
+GPA VI_data Line_8_From_bus_VI {
+    Voltage: Line_8_From_bus_Voltage 
+    Current: Line_8_From_bus_Current 
+}
+
+GPA Phasor Line_8_From_bus_Voltage {
+    Magnitude: PPA:57 
+    Angle: PPA:58 
+}
+
+GPA Phasor Line_8_From_bus_Current {
+    Magnitude: PPA:59 
+    Angle: PPA:60 
+}
+
+GPA VI_data Line_8_To_bus_VI {
+    Voltage: Line_8_To_bus_Voltage 
+    Current: Line_8_To_bus_Current 
+}
+
+GPA Phasor Line_8_To_bus_Voltage {
+    Magnitude: PPA:61 
+    Angle: PPA:62 
+}
+
+GPA Phasor Line_8_To_bus_Current {
+    Magnitude: PPA:63 
+    Angle: PPA:64 
+}
+
+GPA Line_data Line_9_Line_measurements {
+    From_bus: Line_9_From_bus_VI 
+    To_bus: Line_9_To_bus_VI 
+}
+
+GPA VI_data Line_9_From_bus_VI {
+    Voltage: Line_9_From_bus_Voltage 
+    Current: Line_9_From_bus_Current 
+}
+
+GPA Phasor Line_9_From_bus_Voltage {
+    Magnitude: PPA:65 
+    Angle: PPA:66 
+}
+
+GPA Phasor Line_9_From_bus_Current {
+    Magnitude: PPA:67 
+    Angle: PPA:68 
+}
+
+GPA VI_data Line_9_To_bus_VI {
+    Voltage: Line_9_To_bus_Voltage 
+    Current: Line_9_To_bus_Current 
+}
+
+GPA Phasor Line_9_To_bus_Voltage {
+    Magnitude: PPA:69 
+    Angle: PPA:70 
+}
+
+GPA Phasor Line_9_To_bus_Current {
+    Magnitude: PPA:71 
+    Angle: PPA:72 
+}
+
+GPA Line_data Line_10_Line_measurements {
+    From_bus: Line_10_From_bus_VI 
+    To_bus: Line_10_To_bus_VI 
+}
+
+GPA VI_data Line_10_From_bus_VI {
+    Voltage: Line_10_From_bus_Voltage 
+    Current: Line_10_From_bus_Current 
+}
+
+GPA Phasor Line_10_From_bus_Voltage {
+    Magnitude: PPA:73 
+    Angle: PPA:74 
+}
+
+GPA Phasor Line_10_From_bus_Current {
+    Magnitude: PPA:75 
+    Angle: PPA:76 
+}
+
+GPA VI_data Line_10_To_bus_VI {
+    Voltage: Line_10_To_bus_Voltage 
+    Current: Line_10_To_bus_Current 
+}
+
+GPA Phasor Line_10_To_bus_Voltage {
+    Magnitude: PPA:77 
+    Angle: PPA:78 
+}
+
+GPA Phasor Line_10_To_bus_Current {
+    Magnitude: PPA:79 
+    Angle: PPA:80 
+}
+
+GPA Line_data Line_11_Line_measurements {
+    From_bus: Line_11_From_bus_VI 
+    To_bus: Line_11_To_bus_VI 
+}
+
+GPA VI_data Line_11_From_bus_VI {
+    Voltage: Line_11_From_bus_Voltage 
+    Current: Line_11_From_bus_Current 
+}
+
+GPA Phasor Line_11_From_bus_Voltage {
+    Magnitude: PPA:81 
+    Angle: PPA:82 
+}
+
+GPA Phasor Line_11_From_bus_Current {
+    Magnitude: PPA:83 
+    Angle: PPA:84 
+}
+
+GPA VI_data Line_11_To_bus_VI {
+    Voltage: Line_11_To_bus_Voltage 
+    Current: Line_11_To_bus_Current 
+}
+
+GPA Phasor Line_11_To_bus_Voltage {
+    Magnitude: PPA:85 
+    Angle: PPA:86 
+}
+
+GPA Phasor Line_11_To_bus_Current {
+    Magnitude: PPA:87 
+    Angle: PPA:88 
+}
+
+GPA Line_data Line_12_Line_measurements {
+    From_bus: Line_12_From_bus_VI 
+    To_bus: Line_12_To_bus_VI 
+}
+
+GPA VI_data Line_12_From_bus_VI {
+    Voltage: Line_12_From_bus_Voltage 
+    Current: Line_12_From_bus_Current 
+}
+
+GPA Phasor Line_12_From_bus_Voltage {
+    Magnitude: PPA:89 
+    Angle: PPA:90 
+}
+
+GPA Phasor Line_12_From_bus_Current {
+    Magnitude: PPA:91 
+    Angle: PPA:92 
+}
+
+GPA VI_data Line_12_To_bus_VI {
+    Voltage: Line_12_To_bus_Voltage 
+    Current: Line_12_To_bus_Current 
+}
+
+GPA Phasor Line_12_To_bus_Voltage {
+    Magnitude: PPA:93 
+    Angle: PPA:94 
+}
+
+GPA Phasor Line_12_To_bus_Current {
+    Magnitude: PPA:95 
+    Angle: PPA:96 
+}
+
+GPA Line_data Line_13_Line_measurements {
+    From_bus: Line_13_From_bus_VI 
+    To_bus: Line_13_To_bus_VI 
+}
+
+GPA VI_data Line_13_From_bus_VI {
+    Voltage: Line_13_From_bus_Voltage 
+    Current: Line_13_From_bus_Current 
+}
+
+GPA Phasor Line_13_From_bus_Voltage {
+    Magnitude: PPA:97 
+    Angle: PPA:98 
+}
+
+GPA Phasor Line_13_From_bus_Current {
+    Magnitude: PPA:99 
+    Angle: PPA:100 
+}
+
+GPA VI_data Line_13_To_bus_VI {
+    Voltage: Line_13_To_bus_Voltage 
+    Current: Line_13_To_bus_Current 
+}
+
+GPA Phasor Line_13_To_bus_Voltage {
+    Magnitude: PPA:101 
+    Angle: PPA:102 
+}
+
+GPA Phasor Line_13_To_bus_Current {
+    Magnitude: PPA:103 
+    Angle: PPA:104 
+}
+
+GPA Line_data Line_14_Line_measurements {
+    From_bus: Line_14_From_bus_VI 
+    To_bus: Line_14_To_bus_VI 
+}
+
+GPA VI_data Line_14_From_bus_VI {
+    Voltage: Line_14_From_bus_Voltage 
+    Current: Line_14_From_bus_Current 
+}
+
+GPA Phasor Line_14_From_bus_Voltage {
+    Magnitude: PPA:105 
+    Angle: PPA:106 
+}
+
+GPA Phasor Line_14_From_bus_Current {
+    Magnitude: PPA:107 
+    Angle: PPA:108 
+}
+
+GPA VI_data Line_14_To_bus_VI {
+    Voltage: Line_14_To_bus_Voltage 
+    Current: Line_14_To_bus_Current 
+}
+
+GPA Phasor Line_14_To_bus_Voltage {
+    Magnitude: PPA:109 
+    Angle: PPA:110 
+}
+
+GPA Phasor Line_14_To_bus_Current {
+    Magnitude: PPA:111 
+    Angle: PPA:112 
+}
+
+GPA Line_data Line_15_Line_measurements {
+    From_bus: Line_15_From_bus_VI 
+    To_bus: Line_15_To_bus_VI 
+}
+
+GPA VI_data Line_15_From_bus_VI {
+    Voltage: Line_15_From_bus_Voltage 
+    Current: Line_15_From_bus_Current 
+}
+
+GPA Phasor Line_15_From_bus_Voltage {
+    Magnitude: PPA:113 
+    Angle: PPA:114 
+}
+
+GPA Phasor Line_15_From_bus_Current {
+    Magnitude: PPA:115 
+    Angle: PPA:116 
+}
+
+GPA VI_data Line_15_To_bus_VI {
+    Voltage: Line_15_To_bus_Voltage 
+    Current: Line_15_To_bus_Current 
+}
+
+GPA Phasor Line_15_To_bus_Voltage {
+    Magnitude: PPA:117 
+    Angle: PPA:118 
+}
+
+GPA Phasor Line_15_To_bus_Current {
+    Magnitude: PPA:119 
+    Angle: PPA:120 
+}
+
+GPA Line_data Line_16_Line_measurements {
+    From_bus: Line_16_From_bus_VI 
+    To_bus: Line_16_To_bus_VI 
+}
+
+GPA VI_data Line_16_From_bus_VI {
+    Voltage: Line_16_From_bus_Voltage 
+    Current: Line_16_From_bus_Current 
+}
+
+GPA Phasor Line_16_From_bus_Voltage {
+    Magnitude: PPA:121 
+    Angle: PPA:122 
+}
+
+GPA Phasor Line_16_From_bus_Current {
+    Magnitude: PPA:123 
+    Angle: PPA:124 
+}
+
+GPA VI_data Line_16_To_bus_VI {
+    Voltage: Line_16_To_bus_Voltage 
+    Current: Line_16_To_bus_Current 
+}
+
+GPA Phasor Line_16_To_bus_Voltage {
+    Magnitude: PPA:125 
+    Angle: PPA:126 
+}
+
+GPA Phasor Line_16_To_bus_Current {
+    Magnitude: PPA:127 
+    Angle: PPA:128 
+}
+
+GPA Line_data Line_17_Line_measurements {
+    From_bus: Line_17_From_bus_VI 
+    To_bus: Line_17_To_bus_VI 
+}
+
+GPA VI_data Line_17_From_bus_VI {
+    Voltage: Line_17_From_bus_Voltage 
+    Current: Line_17_From_bus_Current 
+}
+
+GPA Phasor Line_17_From_bus_Voltage {
+    Magnitude: PPA:129 
+    Angle: PPA:130 
+}
+
+GPA Phasor Line_17_From_bus_Current {
+    Magnitude: PPA:131 
+    Angle: PPA:132 
+}
+
+GPA VI_data Line_17_To_bus_VI {
+    Voltage: Line_17_To_bus_Voltage 
+    Current: Line_17_To_bus_Current 
+}
+
+GPA Phasor Line_17_To_bus_Voltage {
+    Magnitude: PPA:133 
+    Angle: PPA:134 
+}
+
+GPA Phasor Line_17_To_bus_Current {
+    Magnitude: PPA:135 
+    Angle: PPA:136 
+}
+
+GPA Line_data Line_18_Line_measurements {
+    From_bus: Line_18_From_bus_VI 
+    To_bus: Line_18_To_bus_VI 
+}
+
+GPA VI_data Line_18_From_bus_VI {
+    Voltage: Line_18_From_bus_Voltage 
+    Current: Line_18_From_bus_Current 
+}
+
+GPA Phasor Line_18_From_bus_Voltage {
+    Magnitude: PPA:137 
+    Angle: PPA:138 
+}
+
+GPA Phasor Line_18_From_bus_Current {
+    Magnitude: PPA:139 
+    Angle: PPA:140 
+}
+
+GPA VI_data Line_18_To_bus_VI {
+    Voltage: Line_18_To_bus_Voltage 
+    Current: Line_18_To_bus_Current 
+}
+
+GPA Phasor Line_18_To_bus_Voltage {
+    Magnitude: PPA:141 
+    Angle: PPA:142 
+}
+
+GPA Phasor Line_18_To_bus_Current {
+    Magnitude: PPA:143 
+    Angle: PPA:144 
+}
+
+GPA Line_data Line_19_Line_measurements {
+    From_bus: Line_19_From_bus_VI 
+    To_bus: Line_19_To_bus_VI 
+}
+
+GPA VI_data Line_19_From_bus_VI {
+    Voltage: Line_19_From_bus_Voltage 
+    Current: Line_19_From_bus_Current 
+}
+
+GPA Phasor Line_19_From_bus_Voltage {
+    Magnitude: PPA:145 
+    Angle: PPA:146 
+}
+
+GPA Phasor Line_19_From_bus_Current {
+    Magnitude: PPA:147 
+    Angle: PPA:148 
+}
+
+GPA VI_data Line_19_To_bus_VI {
+    Voltage: Line_19_To_bus_Voltage 
+    Current: Line_19_To_bus_Current 
+}
+
+GPA Phasor Line_19_To_bus_Voltage {
+    Magnitude: PPA:149 
+    Angle: PPA:150 
+}
+
+GPA Phasor Line_19_To_bus_Current {
+    Magnitude: PPA:151 
+    Angle: PPA:152 
+}
+
+GPA Line_data Line_20_Line_measurements {
+    From_bus: Line_20_From_bus_VI 
+    To_bus: Line_20_To_bus_VI 
+}
+
+GPA VI_data Line_20_From_bus_VI {
+    Voltage: Line_20_From_bus_Voltage 
+    Current: Line_20_From_bus_Current 
+}
+
+GPA Phasor Line_20_From_bus_Voltage {
+    Magnitude: PPA:153 
+    Angle: PPA:154 
+}
+
+GPA Phasor Line_20_From_bus_Current {
+    Magnitude: PPA:155 
+    Angle: PPA:156 
+}
+
+GPA VI_data Line_20_To_bus_VI {
+    Voltage: Line_20_To_bus_Voltage 
+    Current: Line_20_To_bus_Current 
+}
+
+GPA Phasor Line_20_To_bus_Voltage {
+    Magnitude: PPA:157 
+    Angle: PPA:158 
+}
+
+GPA Phasor Line_20_To_bus_Current {
+    Magnitude: PPA:159 
+    Angle: PPA:160 
+}
+
+GPA Line_data Line_21_Line_measurements {
+    From_bus: Line_21_From_bus_VI 
+    To_bus: Line_21_To_bus_VI 
+}
+
+GPA VI_data Line_21_From_bus_VI {
+    Voltage: Line_21_From_bus_Voltage 
+    Current: Line_21_From_bus_Current 
+}
+
+GPA Phasor Line_21_From_bus_Voltage {
+    Magnitude: PPA:161 
+    Angle: PPA:162 
+}
+
+GPA Phasor Line_21_From_bus_Current {
+    Magnitude: PPA:163 
+    Angle: PPA:164 
+}
+
+GPA VI_data Line_21_To_bus_VI {
+    Voltage: Line_21_To_bus_Voltage 
+    Current: Line_21_To_bus_Current 
+}
+
+GPA Phasor Line_21_To_bus_Voltage {
+    Magnitude: PPA:165 
+    Angle: PPA:166 
+}
+
+GPA Phasor Line_21_To_bus_Current {
+    Magnitude: PPA:167 
+    Angle: PPA:168 
+}
+
+GPA Line_data Line_22_Line_measurements {
+    From_bus: Line_22_From_bus_VI 
+    To_bus: Line_22_To_bus_VI 
+}
+
+GPA VI_data Line_22_From_bus_VI {
+    Voltage: Line_22_From_bus_Voltage 
+    Current: Line_22_From_bus_Current 
+}
+
+GPA Phasor Line_22_From_bus_Voltage {
+    Magnitude: PPA:169 
+    Angle: PPA:170 
+}
+
+GPA Phasor Line_22_From_bus_Current {
+    Magnitude: PPA:171 
+    Angle: PPA:172 
+}
+
+GPA VI_data Line_22_To_bus_VI {
+    Voltage: Line_22_To_bus_Voltage 
+    Current: Line_22_To_bus_Current 
+}
+
+GPA Phasor Line_22_To_bus_Voltage {
+    Magnitude: PPA:173 
+    Angle: PPA:174 
+}
+
+GPA Phasor Line_22_To_bus_Current {
+    Magnitude: PPA:175 
+    Angle: PPA:176 
+}
+
+GPA Line_data Line_23_Line_measurements {
+    From_bus: Line_23_From_bus_VI 
+    To_bus: Line_23_To_bus_VI 
+}
+
+GPA VI_data Line_23_From_bus_VI {
+    Voltage: Line_23_From_bus_Voltage 
+    Current: Line_23_From_bus_Current 
+}
+
+GPA Phasor Line_23_From_bus_Voltage {
+    Magnitude: PPA:177 
+    Angle: PPA:178 
+}
+
+GPA Phasor Line_23_From_bus_Current {
+    Magnitude: PPA:179 
+    Angle: PPA:180 
+}
+
+GPA VI_data Line_23_To_bus_VI {
+    Voltage: Line_23_To_bus_Voltage 
+    Current: Line_23_To_bus_Current 
+}
+
+GPA Phasor Line_23_To_bus_Voltage {
+    Magnitude: PPA:181 
+    Angle: PPA:182 
+}
+
+GPA Phasor Line_23_To_bus_Current {
+    Magnitude: PPA:183 
+    Angle: PPA:184 
+}
+
+GPA Line_data Line_24_Line_measurements {
+    From_bus: Line_24_From_bus_VI 
+    To_bus: Line_24_To_bus_VI 
+}
+
+GPA VI_data Line_24_From_bus_VI {
+    Voltage: Line_24_From_bus_Voltage 
+    Current: Line_24_From_bus_Current 
+}
+
+GPA Phasor Line_24_From_bus_Voltage {
+    Magnitude: PPA:185 
+    Angle: PPA:186 
+}
+
+GPA Phasor Line_24_From_bus_Current {
+    Magnitude: PPA:187 
+    Angle: PPA:188 
+}
+
+GPA VI_data Line_24_To_bus_VI {
+    Voltage: Line_24_To_bus_Voltage 
+    Current: Line_24_To_bus_Current 
+}
+
+GPA Phasor Line_24_To_bus_Voltage {
+    Magnitude: PPA:189 
+    Angle: PPA:190 
+}
+
+GPA Phasor Line_24_To_bus_Current {
+    Magnitude: PPA:191 
+    Angle: PPA:192 
+}
+
+GPA Line_data Output_measurements {
+    From_bus: Output_From_bus_VI 
+    To_bus: Output_To_bus_VI 
+}
+
+GPA VI_data Output_From_bus_VI {
+    Voltage: Output_From_bus_Voltage 
+    Current: Output_From_bus_Current 
+}
+
+GPA Phasor Output_From_bus_Voltage {
+    Magnitude: PPA:100 
+    Angle: PPA:101 
+}
+
+GPA Phasor Output_From_bus_Current {
+    Magnitude: PPA:102 
+    Angle: PPA:103 
+}
+
+GPA VI_data Output_To_bus_VI {
+    Voltage: Output_To_bus_Voltage 
+    Current: Output_To_bus_Current 
+}
+
+GPA Phasor Output_To_bus_Voltage {
+    Magnitude: PPA:104 
+    Angle: PPA:105 
+}
+
+GPA Phasor Output_To_bus_Current {
+    Magnitude: PPA:106 
+    Angle: PPA:107 
+}
+

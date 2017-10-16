@@ -1,0 +1,23 @@
+﻿category GPA
+Measurement_set {
+    GPA Line_data[] Measurements
+}
+
+category GPA
+Line_data {
+    GPA VI_data From_bus
+    GPA VI_data To_bus
+}
+
+category GPA
+VI_data {
+    GPA Phasor Voltage
+    GPA Phasor Current
+}
+
+category GPA
+Phasor {
+    FloatingPoint Double Magnitude
+    FloatingPoint Double Angle
+}
+
