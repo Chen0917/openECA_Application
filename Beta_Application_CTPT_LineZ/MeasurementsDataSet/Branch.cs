@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +15,7 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
         private int m_lineNumber;
         private int m_fromBusNumber;
         private int m_toBusNumber;
+        private int m_lineID;
         private double m_resistance; //pu
         private double m_reactance; //pu
         private double m_susceptance; //pu
@@ -64,6 +65,20 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             set
             {
                 m_toBusNumber = value;
+            }
+
+        }
+
+        [XmlAttribute("LineID")]
+        public int LineID
+        {
+            get
+            {
+                return m_lineID;
+            }
+            set
+            {
+                m_lineID = value;
             }
 
         }
