@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -139,10 +139,10 @@ namespace Beta_Application_CTPT_LineZ
         /// <param name="e"></param>
 
         private void Configure_Button_Click(object sender, EventArgs e)
-        {
+        {            
             // System Scheme Paint Settings
             System_Scheme.SizeChanged += new EventHandler(System_Scheme_SizeChanged);
-            System_Scheme.Font = new Font("SansSerif", 10.0f, FontStyle.Bold);
+            System_Scheme.Font = new Font("SansSerif", 8.0f, FontStyle.Bold);            
             blackPen = new Pen(Color.Black);
             blackBrush = new SolidBrush(Color.Black);
 
@@ -150,16 +150,18 @@ namespace Beta_Application_CTPT_LineZ
             {
                 // System Scheme Paint
                 m_systemTopology = new NetworkTopology(textBoxConfigurationPath.Text);
-                m_tree = new List<int>[m_systemTopology.BusNum];
-                for (int idx0 = 0; idx0 < m_systemTopology.BusNum; idx0++)
+                m_tree = new List<int>[m_systemTopology.BusCalibrateNum];
+                float Font_size = (float)(80 / m_systemTopology.BusCalibrateNum + 2.5);
+                System_Scheme.Font = new Font("SansSerif", Font_size, FontStyle.Bold);
+                for (int idx0 = 0; idx0 < m_systemTopology.BusCalibrateNum; idx0++)
                 {
                     List<int> TempList = new List<int>();
                     m_tree[idx0] = TempList;
                 }
                 m_treeLevelNum = 0;
 
-                m_treeCoordinates = new List<Coor>[m_systemTopology.BusNum];
-                for (int idx1 = 0; idx1 < m_systemTopology.BusNum; idx1++)
+                m_treeCoordinates = new List<Coor>[m_systemTopology.BusCalibrateNum];
+                for (int idx1 = 0; idx1 < m_systemTopology.BusCalibrateNum; idx1++)
                 {
                     List<Coor> TempList = new List<Coor>();
                     m_treeCoordinates[idx1] = TempList;
@@ -170,6 +172,8 @@ namespace Beta_Application_CTPT_LineZ
 
                 try
                 {
+                    //System_Scheme.Controls.Clear();
+                    System_Scheme.Invalidate();
                     System_Scheme.Paint += new PaintEventHandler(System_Scheme_Paint);
                     MessageBox.Show("System configured!");
                 }
@@ -236,8 +240,8 @@ namespace Beta_Application_CTPT_LineZ
 
         private bool Create_Tree()
         {
-            List<int>[] Tree = new List<int>[m_systemTopology.BusNum];
-            for (int idx0 = 0; idx0 < m_systemTopology.BusNum; idx0++)
+            List<int>[] Tree = new List<int>[m_systemTopology.BusCalibrateNum];
+            for (int idx0 = 0; idx0 < m_systemTopology.BusCalibrateNum; idx0++)
             {
                 List<int> TempList = new List<int>();
                 Tree[idx0] = TempList;
@@ -248,7 +252,7 @@ namespace Beta_Application_CTPT_LineZ
 
             //Find level of each Node
             
-            int[] LevelRecord = new int[m_systemTopology.BusNum+1];
+            int[] LevelRecord = new int[m_systemTopology.BusCalibrateNum + 1];
 
             if (ConnectedComponents[0, 0, 0] == 0)
             {
@@ -278,17 +282,43 @@ namespace Beta_Application_CTPT_LineZ
             }
 
             TreeLevelNum = TreeLevelNum + 1;
-
-            m_tree = Tree;
             m_treeLevelNum = TreeLevelNum;
+
+            // Adjust buses' orders to avoid crossing when drawing
+            if (m_systemTopology.BusCalibrateNum > 15)
+            {
+                for (int idx2 = 1; idx2 < TreeLevelNum; idx2++)
+                {
+                    List<int> TempTreeLevel = new List<int>(Tree[idx2].Count());
+
+                    for (int idx3 = 0; idx3 < Tree[idx2 - 1].Count(); idx3++)
+                    {
+                        int CurrentParentBus = Tree[idx2 - 1][idx3];
+
+                        for (int idx4 = 0; idx4 < Tree[idx2].Count(); idx4++)
+                        {
+                            int CurrentChildBus = Tree[idx2][idx4];
+
+                            if (m_systemTopology.ConnectivityMatrix[CurrentParentBus - 1, CurrentChildBus - 1] == 1)
+                            {
+                                TempTreeLevel.Add(CurrentChildBus);
+                            }
+                        }
+                    }
+
+                    Tree[idx2] = TempTreeLevel;
+                }
+            }
+            
+            m_tree = Tree;
 
             return true;
         }
 
         private void DrawTree(Graphics g)
         {
-            List<Coor>[] TreeCoordinates = new List<Coor>[m_systemTopology.BusNum];
-            for (int idx1 = 0; idx1 < m_systemTopology.BusNum; idx1++)
+            List<Coor>[] TreeCoordinates = new List<Coor>[m_systemTopology.BusCalibrateNum];
+            for (int idx1 = 0; idx1 < m_systemTopology.BusCalibrateNum; idx1++)
             {
                 List<Coor> TempList = new List<Coor>();
                 TreeCoordinates[idx1] = TempList;
@@ -298,15 +328,15 @@ namespace Beta_Application_CTPT_LineZ
             int Height = System_Scheme.Height - 10;
 
             int XSCALE = (int)(Width / m_treeLevelNum);
-            int YSCALE = (int)(Height / m_treeLevelNum * 2);
+            int YSCALE = (int)(Height / m_treeLevelNum * 3);
 
             // Draw the tree by level
             int OriginalCoorX = 30;
-            int OriginalCoorY = (int) (Height / 2);
+            int OriginalCoorY = (int) (Height / 3);
             int Xpos = 0;
             int Ypos = 0;
-            int dX = 15;
-            int dY = 20;
+            int dX = 5 + 80 / m_systemTopology.BusCalibrateNum;
+            int dY = 10 + 80 / m_systemTopology.BusCalibrateNum;
             int dWords = 10;
             
             //Draw all the buses
@@ -320,7 +350,8 @@ namespace Beta_Application_CTPT_LineZ
                     Ypos = idx1;
                     int CoorY = OriginalCoorY + Ypos * YSCALE;
 
-                    string BusName = m_systemTopology.BusOriginalLibrary[m_tree[idx0][idx1]-1].ToString();
+                    //string BusName = m_systemTopology.BusOriginalLibrary[m_tree[idx0][idx1]-1].ToString();
+                    string BusName = m_systemTopology.BusNameOriginalLibrary[m_tree[idx0][idx1] - 1];
                     g.DrawString(BusName, System_Scheme.Font, blackBrush, new PointF(CoorX + dX - dWords, CoorY - dY - dWords));
                     g.DrawLine(blackPen, CoorX, CoorY - (int)(YSCALE / 3), CoorX, CoorY + (int)(YSCALE / 3));
 
@@ -467,12 +498,12 @@ namespace Beta_Application_CTPT_LineZ
                 {
                     string[] TempRow = {
                         K[idx0, 0].Real.ToString(),
-                        m_systemTopology.BusOriginalLibrary[(int)K[idx0,1].Real -1].ToString(),
+                        m_systemTopology.BusNameOriginalLibrary[(int)K[idx0,1].Real -1].ToString(),
                         Math.Round(K[idx0, 2].Magnitude, 4).ToString(),
                         Math.Round(K[idx0, 2].Phase / Math.PI * 180, 4).ToString(),
                         Math.Round(K[idx0, 3].Magnitude, 4).ToString(),
                         Math.Round(K[idx0, 3].Phase / Math.PI * 180, 4).ToString(),
-                        m_systemTopology.BusOriginalLibrary[(int)K[idx0,4].Real -1].ToString(),
+                        m_systemTopology.BusNameOriginalLibrary[(int)K[idx0,4].Real -1].ToString(),
                         Math.Round(K[idx0, 5].Magnitude, 4).ToString(),
                         Math.Round(K[idx0, 5].Phase / Math.PI * 180, 4).ToString(),
                         Math.Round(K[idx0, 6].Magnitude, 4).ToString(),
@@ -494,9 +525,22 @@ namespace Beta_Application_CTPT_LineZ
             for (int idx0 = 0; idx0 < LineParameter.GetLength(0); idx0++)
             {
                 int CurrentLineNumber = (int)LineParameter[idx0, 0].Real;
-                string R = "R: " + Math.Abs(Math.Round(LineParameter[idx0, 1].Real, 4)).ToString();
-                string X = "X: " + Math.Abs(Math.Round(LineParameter[idx0, 1].Imaginary, 4)).ToString();
-                string y = "y: " + Math.Abs(Math.Round(LineParameter[idx0, 2].Real, 4)).ToString();
+
+                string R = "NaN";
+                string X = "NaN";
+                string y = "NaN";
+
+                //if (LineParameter[idx0, 1].Real >= 0)
+                //{
+                //    R = "R: " + Math.Abs(Math.Round(LineParameter[idx0, 1].Real, 4)).ToString();
+                //    X = "X: " + Math.Abs(Math.Round(LineParameter[idx0, 1].Imaginary, 4)).ToString();
+                //    y = "y: " + Math.Abs(Math.Round(LineParameter[idx0, 2].Real, 4)).ToString();
+                //}
+
+                R = "R: " + Math.Abs(Math.Round(LineParameter[idx0, 1].Real, 4)).ToString();
+                X = "X: " + Math.Abs(Math.Round(LineParameter[idx0, 1].Imaginary, 4)).ToString();
+                y = "y: " + Math.Abs(Math.Round(LineParameter[idx0, 2].Real, 4)).ToString();
+
 
                 for (int idx1 = 0; idx1 < m_treeLineNumber.Count(); idx1++)
                 {
@@ -516,7 +560,7 @@ namespace Beta_Application_CTPT_LineZ
                         {
                             var richTextBox = (RichTextBox)sender;
                             richTextBox.Font = new Font("Tahoma", 12, FontStyle.Italic);
-                            richTextBox.BackColor = Color.PaleTurquoise;
+                            richTextBox.BackColor = Color.PaleTurquoise;                            
                         };
 
                         LineParametersTextBoxes[idx1].MouseLeave += (object sender, EventArgs e) =>
@@ -734,9 +778,8 @@ namespace Beta_Application_CTPT_LineZ
 
                 operationStartTime = DateTime.UtcNow.Ticks;
                 MeasurementKey[] inputKeys = AdapterBase.ParseInputMeasurementKeys(MetadataRecord.Metadata, false, m_trendDataSettings.PointList, "MeasurementDetail");
-                IEnumerable<ulong> pointIDList = inputKeys.Select(key => (ulong)(key.ID + 69));
+                IEnumerable<ulong> pointIDList = inputKeys.Select(key => (ulong)(key.ID + 318));
                 //IEnumerable<ulong> pointIDList = inputKeys.Select(key => (ulong)(key.ID));
-                operationTime = DateTime.UtcNow.Ticks - operationStartTime;
 
                 ShowUpdateMessage($">>> Historian read will be for {inputKeys.Length:N0} points based on provided meta-data expression.");
 
@@ -967,7 +1010,7 @@ namespace Beta_Application_CTPT_LineZ
                     {
                         UpdateCurrentFrame();
 
-                        Measurement_set CurrentFrame_local = ConvertFrameFromModelToLocalModel(CurrentFrame);
+                        Measurement_set CurrentFrame_local = ConvertFrameFromModelToLocalModel(CurrentFrame, m_systemTopology);
 
                         if (m_openECARawDataSet.RawDataSet[0].Measurements.Count() == 1)
                         {
@@ -1299,8 +1342,14 @@ namespace Beta_Application_CTPT_LineZ
 
                 for (int idx0 = 0; idx0 < CurrentSystem.LineSetCalibrate.Count(); idx0++)
                 {
-                    int CurrentLineNumberIndex = idx0;
-                    int CurrentLineNumber = CurrentLineNumberIndex + 1;
+                    int CurrentLineNumber = CurrentSystem.LineSetCalibrate[idx0];
+                    int CurrentLineNumberIndex = CurrentSystem.LineSetCalibrate[idx0] - 1;
+
+                    // For DVP system
+                    if (CurrentSystem.LineSetCalibrate.Count() > 11)
+                    {
+                        CurrentLineNumberIndex = CurrentLineNumberIndex + 24;
+                    }
 
                     double V1M = CurrentFrameData.Measurements[CurrentLineNumberIndex].From_bus.Voltage.Magnitude;
                     double V1A = CurrentFrameData.Measurements[CurrentLineNumberIndex].From_bus.Voltage.Angle;
@@ -1320,7 +1369,7 @@ namespace Beta_Application_CTPT_LineZ
                     Complex I2 = Complex.FromPolarCoordinates(I2M, I2A * Math.PI / 180);
 
                     Complex[] LineParameterResults = SingleLineImpedanceComputation(V1, KV1, I1, KI1, V2, KV2, I2, KI2);
-
+                    
                     LineParameters[ResultIndex, 0] = CurrentLineNumber;
                     LineParameters[ResultIndex, 1] = LineParameterResults[0];
                     LineParameters[ResultIndex, 2] = LineParameterResults[1];
@@ -1345,22 +1394,42 @@ namespace Beta_Application_CTPT_LineZ
             Complex Vr = V2 * KV2;
             Complex Ir = I2 * KI2;
 
-            Complex Z = (Vs * Vs - Vr * Vr) / (Is * Vr - Ir * Vs);
-            Complex y = 2 * ((Is + Ir) / (Vs + Vr));
+            Complex Z = Complex.FromPolarCoordinates(double.NaN, double.NaN);
+            Complex y = Complex.FromPolarCoordinates(double.NaN, double.NaN);
 
-
+            if ((Vs != 0) && (Vr != 0) && (Is != 0) && (Ir != 0))            
+            {
+                Z = (Vs * Vs - Vr * Vr) / (Is * Vr - Ir * Vs);
+                y = 2 * ((Is + Ir) / (Vs + Vr));
+            }
+            
+            
             Complex[] results = new Complex[2] { Z, y.Imaginary };
 
             return results;
         }
 
-        public static Measurement_set ConvertFrameFromModelToLocalModel(Model.GPA.Measurement_set CurrentFrame)
+        public static Measurement_set ConvertFrameFromModelToLocalModel(Model.GPA.Measurement_set CurrentFrame, NetworkTopology CurrentSystem)
         {
             Measurement_set CurrentFrame_local = new Measurement_set();
 
             int LineCount = CurrentFrame.Measurements.Count();
 
-            for (int idx0 = 0; idx0 < LineCount; idx0++)
+            int Start_measurement_line_count = 0;
+            int End_measurement_line_count = 0;
+
+            if (CurrentSystem.LineNum <= 30)
+            {
+                Start_measurement_line_count = 0;
+                End_measurement_line_count = CurrentSystem.LineNum;
+            }
+            else
+            {
+                Start_measurement_line_count = 24;
+                End_measurement_line_count = LineCount;
+            }
+
+            for (int idx0 = Start_measurement_line_count; idx0 < End_measurement_line_count; idx0++)
             {
                 Line_data CurrentLineData = new Line_data();
 
