@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
         #region [ Private Members ]
 
         private int m_busnumber;
-        private int m_busname;
+        private string m_busname;
         private bool m_referenceFlag;
 
         #endregion
@@ -35,7 +35,7 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
         }
 
         [XmlAttribute("BusName")]
-        public int BusName
+        public string BusName
         {
             get
             {
