@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +9,20 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
     public class NetworkTopology
     {
         #region [ Private Members ]
-        private List<int> m_busOriginalLibrary;                      // Save all original bus numbers
+        private List<int> m_busOriginalLibrary;                  // Save all original bus numbers
+        private List<string> m_busNameOriginalLibrary;         // Save all original bus names
         private int[] m_busLibrary;                              // Save all indexed bus numbers
-        private List<int> m_lineLibrary;                             // Save all line numbers
-        private List<int[]> m_lineBusInfoOriginal;                    // original [line number, from bus number, to bus number] 
+        private List<int> m_busCalibrateOriginalLibrary;         // Save all original bus numbers to be calibrated
+        private int[] m_busCalibrateLibrary;                     // Save all indexed bus numbers to be calibrated
+        private List<int> m_lineLibrary;                         // Save all line numbers
+        private List<int[]> m_lineBusInfoOriginal;               // original [line number, from bus number, to bus number] 
         private int[,] m_lineBusInfo;                            // [line number, from bus number, to bus number] 
-        private List<int> m_lineSetCalibrateOriginal;                // Original line number set of the lines to be calibrated
-        private List<int> m_lineSetCalibrate;                        // line number set of the lines to be calibrated
-        private List<double[]> m_lineParameters;                      // [Original line number, R, X, y] -> [Line number, R, X, y] p.u.
+        private List<int> m_lineSetCalibrateOriginal;            // Original line number set of the lines to be calibrated
+        private List<int> m_lineSetCalibrate;                    // line number set of the lines to be calibrated
+        private List<double[]> m_lineParameters;                 // [Original line number, R, X, y] -> [Line number, R, X, y] p.u.
         private Dictionary<string, double> m_zyDictionary;       // Dictionary of the line parameters
         private int m_busNum;                                    // number of buses
+        private int m_busCalibrateNum;                           // number of buses to be calibrated
         private int m_lineNum;                                   // number of lines
         private double m_baseMVA;
         private double m_baseKV;
@@ -46,11 +50,36 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
                 return m_busLibrary;
             }
         }
+
+        public int[] BusCalibrateLibrary
+        {
+            get
+            {
+                return m_busCalibrateLibrary;
+            }
+        }
+
         public List<int> BusOriginalLibrary
         {
             get
             {
                 return m_busOriginalLibrary;
+            }
+        }
+
+        public List<string> BusNameOriginalLibrary
+        {
+            get
+            {
+                return m_busNameOriginalLibrary;
+            }
+        }
+
+        public List<int> BusCalibrateOriginalLibrary
+        {
+            get
+            {
+                return m_busCalibrateOriginalLibrary;
             }
         }
 
@@ -101,6 +130,14 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             get
             {
                 return m_busNum;
+            }
+        }
+
+        public int BusCalibrateNum
+        {
+            get
+            {
+                return m_busCalibrateNum;
             }
         }
 
@@ -281,6 +318,8 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             int starting_line_original_int = 0;
 
             m_busOriginalLibrary = new List<int>();
+            m_busNameOriginalLibrary = new List<string>();
+            m_busCalibrateOriginalLibrary = new List<int>();
             m_lineLibrary = new List<int>();
             m_lineSetCalibrateOriginal = new List<int>();
             m_lineBusInfoOriginal = new List<int[]>();
@@ -311,13 +350,21 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             }
 
             m_busNum = 0;
+            m_busCalibrateNum = 0;
             foreach (Bus CurrentBus in CurrentCase.Buses)
             {
                 m_busNum += 1;
-                m_busOriginalLibrary.Add(CurrentBus.BusName);
+                m_busOriginalLibrary.Add(CurrentBus.BusNumber);
+                m_busNameOriginalLibrary.Add(CurrentBus.BusName);
                 if (CurrentBus.ReferenceFlag == true)
                 {
-                    starting_bus_original_int = CurrentBus.BusName;
+                    starting_bus_original_int = CurrentBus.BusNumber;
+                }
+
+                if (CurrentBus.BusName != "AuxiliaryBus")
+                {
+                    m_busCalibrateNum += 1;
+                    m_busCalibrateOriginalLibrary.Add(CurrentBus.BusNumber);
                 }
             }
 
@@ -332,6 +379,19 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             for (int idx1 = 0; idx1 < m_busNum; idx1++)
             {
                 m_busLibrary[idx1] = idx1 + 1;
+            }
+
+            m_busCalibrateLibrary = new int[m_busCalibrateNum];
+            for (int idx8 = 0; idx8 < m_busCalibrateNum; idx8++)
+            {
+                for (int idx9 = 0; idx9 < m_busNum; idx9++)
+                {
+                    if (m_busCalibrateOriginalLibrary[idx8] == m_busOriginalLibrary[idx9])
+                    {
+                        m_busCalibrateLibrary[idx8] = m_busLibrary[idx9];
+                        break;
+                    }
+                }
             }
 
             m_lineBusInfo = new int[m_lineNum, 3];
@@ -379,9 +439,9 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
                 }
             }
 
-            m_connectivityMatrix = new int[m_busNum, m_busNum];
+            m_connectivityMatrix = new int[m_busCalibrateNum, m_busCalibrateNum];
             m_componentsNum = 0;
-            m_components = new int[25, 25, 3];//[25, m_lineSetCalibrate.Count(), 3];
+            m_components = new int[25, m_lineSetCalibrate.Count() + 2, 3];
 
             
 
@@ -408,6 +468,15 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             }
 
             ConnectivityAnalysis(starting_bus, starting_line);
+
+            // Insert double lines
+            for (int idx10 = 0; idx10 < m_lineNum; idx10++)
+            {
+                if ((CurrentCase.Branches[idx10].LineID == 2) || (CurrentCase.Branches[idx10].LineID == 3))
+                {
+                    InsertLineToComponent(LineBusInfo[idx10,0], LineBusInfo[idx10, 1], LineBusInfo[idx10, 2]);
+                }
+            }
 
         }
         #endregion
@@ -443,10 +512,11 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
         public void ConnectivityAnalysis(string starting_bus_number, string starting_line_number)
         {
             //Get Connectivity Matrix
-            for (int i = 0; i < m_lineNum; i++)
+            for (int i = 0; i < m_lineSetCalibrate.Count(); i++)
             {
-                int row_number = m_lineBusInfo[i, 1];
-                int col_number = m_lineBusInfo[i, 2];
+                int CurrentLineNumber = m_lineSetCalibrate[i];
+                int row_number = m_lineBusInfo[CurrentLineNumber - 1, 1]; // Buses to be calibrated should be listed firstly in the bus library
+                int col_number = m_lineBusInfo[CurrentLineNumber - 1, 2];
 
                 if ((row_number != -1) && (col_number != -1))
                 {
@@ -466,8 +536,8 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
 
             m_visited[0] = Convert.ToInt32(starting_line_number);
             m_componentsNum += 1;
-            int ComponentLengthLimit = 25;
-            m_tempComponent = new int[ComponentLengthLimit, 3];//[m_lineSetCalibrate.Count(), 3];
+            //int ComponentLengthLimit = 25;
+            m_tempComponent = new int[m_lineSetCalibrate.Count()+1, 3];
             m_tempComponent[0, 0] = starting_bus;
             m_tempComponent[0, 1] = starting_bus;
             m_tempComponent[0, 2] = find_line_from_buses(m_tempComponent[0, 0], m_tempComponent[0, 1]);
@@ -492,7 +562,7 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             int current_root = m_tempComponent[1, 1] - 1;
             m_currentComponentLength = breadth_first_search(current_root);
 
-            for (int k = 0; k < ComponentLengthLimit; k++)
+            for (int k = 0; k < m_lineSetCalibrate.Count()+1; k++)
             {
                 for (int l = 0; l < 3; l++)
                 {
@@ -532,14 +602,14 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
         {
             List<int> ChildSet = new List<int>();
 
-            for (int j = 0; j < m_busNum; j++)
+            for (int j = 0; j < m_busCalibrateNum; j++)
             {
                 if (m_connectivityMatrix[i, j] == 1)
                 {
                     int current_line_number = find_line_from_buses(i + 1, j + 1);
                     bool current_line_visited_flag = false;
                     int new_line_pointer = 0;
-                    for (int k = 0; k < m_lineNum; k++)
+                    for (int k = 0; k < m_lineSetCalibrate.Count(); k++)
                     {
                         if (m_visited[k] == 0)
                         {
@@ -591,6 +661,33 @@ namespace Beta_Application_CTPT_LineZ.MeasurementsDataSet
             }
 
             return current_line_num;
+        }
+
+        public void InsertLineToComponent(int LineNumber, int FromBusNumber, int ToBusNumber)
+        {
+            for (int idx0 = 0; idx0 < m_componentsNum; idx0++)
+            {
+                for (int idx1 = 0; idx1 < m_lineSetCalibrate.Count() + 1; idx1++)
+                {
+                    if (((m_components[idx0, idx1, 2] != LineNumber) && (m_components[idx0, idx1, 0] == FromBusNumber) && (m_components[idx0, idx1, 1] == ToBusNumber)) ||
+                            ((m_components[idx0, idx1, 2] != LineNumber) && (m_components[idx0, idx1, 0] == ToBusNumber) && (m_components[idx0, idx1, 1] == FromBusNumber)))
+                    {
+                        for (int idx2 = m_lineSetCalibrate.Count(); idx2 > idx1; idx2--)
+                        {
+                            m_components[idx0, idx2, 0] = m_components[idx0, idx2 - 1, 0];
+                            m_components[idx0, idx2, 1] = m_components[idx0, idx2 - 1, 1];
+                            m_components[idx0, idx2, 2] = m_components[idx0, idx2 - 1, 2];
+                        }
+
+                        m_components[idx0, idx1 + 1, 0] = m_components[idx0, idx1, 0];
+                        m_components[idx0, idx1 + 1, 1] = m_components[idx0, idx1, 1];
+                        m_components[idx0, idx1 + 1, 2] = LineNumber;
+
+                        break;
+                    }
+                }
+
+            }
         }
         #endregion
     }
