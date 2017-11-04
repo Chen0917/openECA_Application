@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -475,36 +475,25 @@ namespace Beta_Application_CTPT_LineZ.AlgorithmRealization
                         V_temp_array[1, 0] = V_sample_temp[k, 1];
                         DenseMatrix V_temp = DenseMatrix.OfArray(V_temp_array);
 
-                        if ((Vhat != null) && (V_temp != null))
-                        {
-                            if (Vhat[0, 0] == 0)
-                            {
-                                Vhat = V_temp;
-                            }
-                            else
-                            {
-                                Vhat = MatrixCalculationExtensions.HorizontallyConcatenate(Vhat, V_temp);
-                            }
-                        }
-
-
                         Complex[,] I_temp_array = new Complex[2, 1];
                         I_temp_array[0, 0] = I_sample_temp[k, 0];
                         I_temp_array[1, 0] = I_sample_temp[k, 1];
                         DenseMatrix I_temp = DenseMatrix.OfArray(I_temp_array);
 
-                        if ((Ihat != null) && (I_temp != null))
+                        if ((Vhat != null) && (V_temp != null) && (Ihat != null) && (I_temp != null))
                         {
-                            if (Ihat[0, 0] == 0)
+                            if (Vhat[0, 0] == 0)
                             {
+                                Vhat = V_temp;
                                 Ihat = I_temp;
                             }
                             else
                             {
+                                Vhat = MatrixCalculationExtensions.HorizontallyConcatenate(Vhat, V_temp);
                                 Ihat = MatrixCalculationExtensions.HorizontallyConcatenate(Ihat, I_temp);
                             }
                         }
-
+                        
                     }
                 }
 
@@ -519,6 +508,11 @@ namespace Beta_Application_CTPT_LineZ.AlgorithmRealization
                 {
                     Matrix<Complex> Vhat_T = Vhat.Transpose();
                     Matrix<Complex> Ihat_T = Ihat.Transpose();
+
+                    if (Vhat_T.RowCount > Ihat_T.RowCount)
+                    {
+                        int a = 1;
+                    }
 
                     //estimate Zhat
                     Matrix<Complex> Zhat_temp = null;
@@ -544,6 +538,34 @@ namespace Beta_Application_CTPT_LineZ.AlgorithmRealization
 
             if (feasible_flag < 15)
             {
+                //Complex[] KI1_hat = new Complex[30];
+                //Complex[] KV2_hat = new Complex[30];
+                //Complex[] KI2_hat = new Complex[30];
+                //Complex KI1_hat_sum = new Complex();
+                //Complex KV2_hat_sum = new Complex();
+                //Complex KI2_hat_sum = new Complex();
+
+                //int valid_results_count = 0;
+
+                //for (int l = 0; l < 30; l++)
+                //{
+                //    KI1_hat[l] = Zhat11[l] / m_Z[0, 0] * KV1;
+                //    KV2_hat[l] = m_Z[1, 0] / Zhat12[l] * KI1_hat[l]; // Note that the estimated Zhat has been transposed, even though the matrix is symmetric, it should be transposed back for definition causes
+                //    KI2_hat[l] = Zhat21[l] / m_Z[0, 1] * KV1;
+
+                //    //if ((KI1_hat[l].Real < 2) && (KI1_hat[l].Real > 0))
+                //    //{
+                //        KI1_hat_sum = KI1_hat_sum + KI1_hat[l];
+                //        KV2_hat_sum = KV2_hat_sum + KV2_hat[l];
+                //        KI2_hat_sum = KI2_hat_sum + KI2_hat[l];
+                //        valid_results_count += 1;
+                //    //}
+                //}
+
+                //KI1 = KI1_hat_sum / valid_results_count;
+                //KV2 = KV2_hat_sum / valid_results_count;
+                //KI2 = KI2_hat_sum / valid_results_count;
+
                 for (int l = 0; l < 30; l++)
                 {
                     m_Zhat[0, 0] = m_Zhat[0, 0] + Zhat11[l];
@@ -697,12 +719,20 @@ namespace Beta_Application_CTPT_LineZ.AlgorithmRealization
             {
                 Complex[] temp_KV = new Complex[inaccurate_line_V.RowCount];
                 Complex temp_KV_sum = 0;
+                int valid_results_count = 0;
                 for (int idx6 = 0; idx6 < inaccurate_line_V.RowCount; idx6++)
                 {
                     temp_KV[idx6] = accurate_line_V[idx6, 0] / inaccurate_line_V[idx6, idx5];
-                    temp_KV_sum = temp_KV_sum + temp_KV[idx6];
+
+                    if ((temp_KV[idx6].Real >= 0) && (temp_KV[idx6].Real <= 1.2))
+                    {
+                        temp_KV_sum = temp_KV_sum + temp_KV[idx6];
+                        valid_results_count = valid_results_count + 1;
+                    }
+                    
                 }
-                KV_injection_set[idx5, 0] = temp_KV_sum / inaccurate_line_V.RowCount;
+                
+                KV_injection_set[idx5, 0] = temp_KV_sum / valid_results_count;
             }
             return KV_injection_set;
         }
